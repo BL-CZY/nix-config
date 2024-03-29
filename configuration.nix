@@ -152,6 +152,7 @@
     wl-clip-persist
     xfce.thunar
     vlc
+    obs-studio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
