@@ -89,7 +89,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      kate
       vscode-fhs
       #vscode
     #  thunderbird
@@ -135,7 +134,6 @@
     hyprland
     kitty
     gtk3
-    pavucontrol
     waybar
     eww
     swww
