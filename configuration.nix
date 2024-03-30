@@ -9,9 +9,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  nix.nixPath = [
-    "nixos-config=/home/user/.config/nix-config/configuration.nix"
-  ];
+  # nix.nixPath = [
+    # "nixos-config=/home/user/.config/nix-config/configuration.nix"
+    # "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
+    # "/nix/var/nix/profiles/per-user/root/channels"
+  # ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -21,10 +21,10 @@
   # '';
 
   # 设置鼠标指针大小以及字体 DPI（适用于 4K 显示器）
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
-  };
+  # xresources.properties = {
+    # "Xcursor.size" = 16;
+    # "Xft.dpi" = 172;
+  # };
 
   # 通过 home.packages 安装一些常用的软件
   # 这些软件将仅在当前用户下可用，不会影响系统级别的配置
@@ -93,7 +93,36 @@
     #ethtool
     #pciutils # lspci
     #usbutils # lsusb
-  ]; 
+  ];
+
+  qt = {
+    enable = true;
+
+    platformTheme = "gtk";
+
+    style.name = "adwaita-dark";
+
+    style.package = pkgs.adwaita-qt;
+  };
+
+  gtk = {
+    enable = true;
+
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+
+    theme = {
+      name = "adw-gtk3";
+      package = pkgs.adw-gtk3;
+    };
+
+    iconTheme = {
+     # package = gruvboxPlus;
+     name = "Qogir";
+    };
+  };
 
   # git 相关配置
   programs.git = {
@@ -134,17 +163,14 @@
     }];
     themes = {
       autumn_night_transparent = {
-        "inherits" = "autumn_night";
-        "ui.background" = { };
+        "inherits" = "catppuccin_macchiato";
+        # "ui.background" = { };
       };
     };
   };
 
-  #wayland.windowManager.hyprland = {
-  #  enable = true;
-  #  
-  #};
-
+  imports = [./hyprland.nix];
+  
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
