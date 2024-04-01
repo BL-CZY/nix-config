@@ -35,6 +35,11 @@
     recursive = true;
   };
 
+  home.file.".config/dunst" = {
+    source = ./dunst;
+    recursive = true;
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
