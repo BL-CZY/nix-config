@@ -1,0 +1,100 @@
+DejaVu Sans Mono
+    DejaVu Sans Mono
+    DejaVu Sans Mono Bold
+    DejaVu Sans Mono Bold Oblique
+    DejaVu Sans Mono Oblique
+
+FreeMono
+    FreeMono
+    FreeMono Bold
+    FreeMono Bold Oblique
+    FreeMono Oblique
+
+Hack
+    Hack Bold
+    Hack Bold Italic
+    Hack Italic
+    Hack Regular
+
+JetBrains Mono
+    JetBrains Mono
+    JetBrains Mono
+    JetBrains Mono Bold
+    JetBrains Mono Bold
+    JetBrains Mono Bold Italic
+    JetBrains Mono Bold Italic
+    JetBrains Mono ExtraBold
+    JetBrains Mono ExtraBold
+    JetBrains Mono ExtraBold Italic
+    JetBrains Mono ExtraBold Italic
+    JetBrains Mono ExtraLight
+    JetBrains Mono ExtraLight
+    JetBrains Mono ExtraLight Italic
+    JetBrains Mono ExtraLight Italic
+    JetBrains Mono Italic
+    JetBrains Mono Italic
+    JetBrains Mono Light
+    JetBrains Mono Light
+    JetBrains Mono Light Italic
+    JetBrains Mono Light Italic
+    JetBrains Mono Medium
+    JetBrains Mono Medium
+    JetBrains Mono Medium Italic
+    JetBrains Mono Medium Italic
+    JetBrains Mono Regular
+    JetBrains Mono Regular
+    JetBrains Mono SemiBold
+    JetBrains Mono SemiBold
+    JetBrains Mono SemiBold Italic
+    JetBrains Mono SemiBold Italic
+    JetBrains Mono Thin
+    JetBrains Mono Thin
+    JetBrains Mono Thin Italic
+    JetBrains Mono Thin Italic
+
+JetBrains Mono NL
+    JetBrains Mono NL Bold
+    JetBrains Mono NL Bold Italic
+    JetBrains Mono NL ExtraBold
+    JetBrains Mono NL ExtraBold Italic
+    JetBrains Mono NL ExtraLight
+    JetBrains Mono NL ExtraLight Italic
+    JetBrains Mono NL Italic
+    JetBrains Mono NL Light
+    JetBrains Mono NL Light Italic
+    JetBrains Mono NL Medium
+    JetBrains Mono NL Medium Italic
+    JetBrains Mono NL Regular
+    JetBrains Mono NL SemiBold
+    JetBrains Mono NL SemiBold Italic
+    JetBrains Mono NL Thin
+    JetBrains Mono NL Thin Italic
+
+Liberation Mono
+    Liberation Mono
+    Liberation Mono Bold
+    Liberation Mono Bold Italic
+    Liberation Mono Italic
+
+Noto Sans SignWriting
+    Noto Sans SignWriting Regular
+
+Source Code Pro
+    Source Code Pro
+    Source Code Pro Black
+    Source Code Pro Black Italic
+    Source Code Pro Bold
+    Source Code Pro Bold Italic
+    Source Code Pro ExtraLight
+    Source Code Pro ExtraLight Italic
+    Source Code Pro Italic
+    Source Code Pro Light
+    Source Code Pro Light Italic
+    Source Code Pro Medium
+    Source Code Pro Medium Italic
+    Source Code Pro Semibold
+    Source Code Pro Semibold Italic
+
+Unifont
+    Unifont
+

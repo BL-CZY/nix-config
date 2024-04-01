@@ -120,9 +120,19 @@
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      sddm.enable = true;
+      sddm.theme = "${import ./sddm.nix {inherit pkgs; }}";
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    libsForQt5.qt5.qtquickcontrols2   
+    libsForQt5.qt5.qtgraphicaleffects
     vim
     wget
     git
@@ -139,7 +149,7 @@
     waybar
     eww
     swww
-    rofi-wayland
+    wofi
     networkmanagerapplet
     dunst
     libnotify
@@ -212,20 +222,20 @@
     ];
   }; 
 
-  services.greetd = {
-    enable = true;
-    settings = {
-     default_session.command = ''
-      ${pkgs.greetd.tuigreet}/bin/tuigreet \
-        --time \
-        --asterisks \
-        --user-menu \
-        --cmd Hyprland
-    '';
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #    default_session.command = ''
+  #     ${pkgs.greetd.tuigreet}/bin/tuigreet \
+  #       --time \
+  #       --asterisks \
+  #       --user-menu \
+  #       --cmd Hyprland
+  #   '';
+  #   };
+  # };
 
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-  '';
+  # environment.etc."greetd/environments".text = ''
+  #   Hyprland
+  # '';
 }

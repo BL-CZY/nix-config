@@ -9,6 +9,10 @@ let
     sleep 1
   
     ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
+
+    sleep 1
+    
+    ${pkgs.ibus}/bin/ibus start &
   '';
 in
 {
@@ -16,6 +20,13 @@ in
     enable = true;
     
     settings = {
+
+      # env = [
+        # "GTK4_RC_FILES,/home/USER/.config/gtk-4.0/gtkrc"
+        # "QT_QPA_PLATFORMTHEME,gtk4"
+        # "QT_STYLE_OVERRIDE,gtk4"
+      # ];
+
       monitor = ",1920x1080,auto,1"; 
       input = {
         kb_layout = "us";
@@ -40,6 +51,7 @@ in
         layout = "dwindle";
  
         allow_tearing = false;
+        resize_on_border = true;
       };
  
       decoration = {
@@ -102,11 +114,13 @@ in
         "$mainMod, Q, exec, kitty"
         "$mainMod, F, exec, firefox"        
         "$mainMod, E, exec, thunar"
+        "$mainMod, A, exec, wofi --show drun"
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
         "$mainMod, V, togglefloating"
         "$mainMod, P, pseudo,"
         "$mainMod, O, togglesplit,"
+        "$mainMod SHIFT, F, fullscreen"
  
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
@@ -142,6 +156,9 @@ in
         "$mainMod, mouse_up, workspace, e-1"
 
         ''$mainMod SHIFT, S, exec, grim -g "$(slurp)"''
+
+        "$mainMod SHIFT, O, exec, ibus engine xkb:us::eng"
+        "$mainMod SHIFT, P, exec, ibus engine libpinyin"
       ];
  
       bindm = [
@@ -155,6 +172,14 @@ in
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
         ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+      ];
+
+      windowrule = [
+        "float, ^(qemu)$"
+        "center, ^(qemu)$"
+        "minsize 860 540, ^(qemu)$"
+
+        "nofocus, ^(Ibus-ui-gtk3)$"
       ];
 
       exec-once = ''${startupScript}/bin/start'';
