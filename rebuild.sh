@@ -1,5 +1,5 @@
-rm -rf /home/tpl/.config/kitty
-rm -rf /home/tpl/.config/waybar
-rm -rf /home/tpl/.config/wofi
+rm -r /home/tpl/.config/kitty
+rm -r /home/tpl/.config/waybar
+rm -r /home/tpl/.config/wofi
 
 sudo nixos-rebuild switch --flake .
