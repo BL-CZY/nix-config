@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 let
   usrname = "tpl";
@@ -113,16 +113,6 @@ in
     enableCompletion = true;
   };
 
-  programs.neovim = {
-    enable = true;
-    # plugins = with pkgs.vimPlugins; [
-    #   {
-    #     plugin = coc-rust-analyzer;
-    #     config = ""
-    #   }
-    # ];
-  };
-
   programs.helix = {
     enable = true;
     settings = {
@@ -146,25 +136,19 @@ in
     };
   };
 
+  programs.eww = {
+    enable = true;
+    package = pkgs.eww;
+    configDir = ./programs/eww;
+  };
+
   imports = [
     ./programs/hyprland.nix
     ./programs/wlogout/wlogout.nix
     ./programs/vsc.nix
     ./programs/dunst.nix
-    inputs.ags.homeManagerModules.default
   ];
-
-  programs.ags = {
-    enable = true;
-    configDir = ./ags;
-
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
-  };
-  
+    
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
