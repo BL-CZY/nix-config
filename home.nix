@@ -1,9 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
+let
+  usrname = "tpl";
+in
 {
   # 注意修改这里的用户名与用户目录
-  home.username = "tpl";
-  home.homeDirectory = "/home/tpl";
+  home.username = usrname;
+  home.homeDirectory = "/home/${usrname}";
 
   # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -21,35 +24,33 @@
   # '';
 
   home.file.".config/kitty" = {
-    source = ./kitty;
+    source = ./programs/kitty;
     recursive = true;
   };
 
   home.file.".config/waybar" = {
-    source = ./waybar;
+    source = ./programs/waybar;
     recursive = true;
   };
 
   home.file.".config/wofi" = {
-    source = ./wofi;
+    source = ./programs/wofi;
     recursive = true;
   };
 
-  home.file.".config/dunst" = {
-    source = ./dunst;
-    recursive = true;
-  };
+  # home.file.".config/dunst" = {
+    # source = ./programs/dunst;
+    # recursive = true;
+  # };
 
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
+    gedit
+    rustup
+    xarchiver
+  
     neofetch
-
-    # archives
-    zip
-    xz
-    unzip
-    p7zip
 
     eza # A modern replacement for ‘ls’
     fzf # A command-line fuzzy finder
@@ -59,6 +60,7 @@
     nix-output-monitor
 
     btop  # replacement of htop/nmon
+    qimgv
 
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
@@ -73,11 +75,11 @@
   qt = {
     enable = true;
 
-    # platformTheme = "gtk3";
+    platformTheme = "gtk";
 
-    # style.name = "adwaita-dark";
+    style.name = "adwaita-dark";
 
-    # style.package = pkgs.adwaita-qt;
+    style.package = pkgs.adwaita-qt;
   };
 
   gtk = {
@@ -144,7 +146,24 @@
     };
   };
 
-  imports = [./hyprland.nix];
+  imports = [
+    ./programs/hyprland.nix
+    ./programs/wlogout/wlogout.nix
+    ./programs/vsc.nix
+    ./programs/dunst.nix
+    inputs.ags.homeManagerModules.default
+  ];
+
+  programs.ags = {
+    enable = true;
+    configDir = ./ags;
+
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
   
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

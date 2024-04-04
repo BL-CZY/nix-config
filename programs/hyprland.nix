@@ -52,6 +52,7 @@ in
  
         allow_tearing = false;
         resize_on_border = true;
+        no_border_on_floating = true;
       };
  
       decoration = {
@@ -120,6 +121,7 @@ in
         "$mainMod, V, togglefloating"
         "$mainMod, P, pseudo,"
         "$mainMod, O, togglesplit,"
+        "$mainMod SHIFT, L, exec, wlogout"
         "$mainMod SHIFT, F, fullscreen"
  
         "$mainMod, H, movefocus, l"
@@ -159,10 +161,14 @@ in
 
         "$mainMod SHIFT, O, exec, ibus engine xkb:us::eng"
         "$mainMod SHIFT, P, exec, ibus engine libpinyin"
+
+        # to switch between windows in a floating workspace
+        "ALT,Tab,cyclenext," # change focus to another window
+        "ALT,Tab,bringactivetotop," # bring it to the top
       ];
  
       bindm = [
-        "$mainMod, mouse:272, movewindows"
+        "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
 
@@ -179,7 +185,20 @@ in
         "center, ^(qemu)$"
         "minsize 860 540, ^(qemu)$"
 
+        "float, ^(Thunar)$"
+        "minsize 960 640, ^(Thunar)$"
+
+        "float, ^(thunar)$"
+        "minsize 960 640, ^(thunar)$"
+
+        "float, ^(qimgv)$"
+                
+        "float, ^(gedit)$"
+
+        "float, ^(vlc)$"
+
         "nofocus, ^(Ibus-ui-gtk3)$"
+        "center, ^(Ibus-ui-gtk3)$"
       ];
 
       exec-once = ''${startupScript}/bin/start'';

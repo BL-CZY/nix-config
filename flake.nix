@@ -8,9 +8,11 @@
        url = "github:nix-community/home-manager/release-23.11";
        inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ags.url = "github:Aylur/ags";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       # 这里的 my-nixos 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {

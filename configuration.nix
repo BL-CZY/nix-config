@@ -58,11 +58,51 @@
   #    layout = "us";
   #    xkbVariant = "";
   # };
-  
+
+  boot.supportedFilesystems = [
+    "ntfs"
+  ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  fileSystems = {
+    "/mnt/data" = {
+      device = "/dev/nvme0n1p5";
+      fsType = "ext4";
+      options = [
+        "users"
+        "nofail"
+      ];
+    };
+
+    "/mnt/windows" = {
+      device = "/dev/nvme0n1p3";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "users"
+        "nofail"
+      ];
+    };
+
+    # enable mounting usb
+    "/mnt/dev" = {
+      device = "/dev/sda1";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "users"
+        "nofail"
+      ];
+    };
+  };
  
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -91,7 +131,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      vscode-fhs
       #vscode
     #  thunderbird
     ];
@@ -124,10 +163,21 @@
     enable = true;
     displayManager = {
       sddm.enable = true;
-      sddm.theme = "${import ./sddm.nix {inherit pkgs; }}";
+      sddm.theme = "${import ./programs/sddm.nix {inherit pkgs; }}";
     };
   };
 
+  services.gvfs.enable = true;
+  programs.xfconf.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
