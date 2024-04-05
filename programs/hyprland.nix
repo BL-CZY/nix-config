@@ -14,6 +14,12 @@ let
     
     ${pkgs.ibus}/bin/ibus start &
   '';
+
+  screenShotScript = pkgs.pkgs.writeShellScriptBin "screenShot" ''
+    output="$HOME/Pictures/ScreenShots"/"$(date +%Y%m%d-%H%M%S)".png
+    grim -g "$(slurp)" $output
+    qimgv $output 
+  '';
 in
 {
   wayland.windowManager.hyprland = {
@@ -118,7 +124,8 @@ in
         "$mainMod, A, exec, wofi --show drun"
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
-        "$mainMod, V, togglefloating"
+        "$mainMod, W, togglefloating"
+        "$mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
         "$mainMod, P, pseudo,"
         "$mainMod, O, togglesplit,"
         "$mainMod SHIFT, L, exec, wlogout"
@@ -157,10 +164,15 @@ in
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        ''$mainMod SHIFT, S, exec, grim -g "$(slurp)"''
+        ''$mainMod SHIFT, S, exec, ${screenShotScript}/bin/screenShot''
 
         "$mainMod SHIFT, O, exec, ibus engine xkb:us::eng"
         "$mainMod SHIFT, P, exec, ibus engine libpinyin"
+
+        "$mainMod CTRL, L, movewindow, r"
+        "$mainMod CTRL, H, movewindow, l"
+        "$mainMod CTRL, K, movewindow, u"
+        "$mainMod CTRL, J, movewindow, d"
 
         # to switch between windows in a floating workspace
         "ALT,Tab,cyclenext," # change focus to another window
@@ -201,7 +213,12 @@ in
         "center, ^(Ibus-ui-gtk3)$"
       ];
 
-      exec-once = ''${startupScript}/bin/start'';
+      exec-once = [
+        ''${startupScript}/bin/start''
+        "wl-paste --type text --watch cliphist store #Stores only text data"
+        "wl-paste --type image --watch cliphist store #Stores only image data"
+        "ibus start"
+      ];
     };
   };
 }

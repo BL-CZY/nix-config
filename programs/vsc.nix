@@ -9,7 +9,15 @@
       rust-lang.rust-analyzer
     ];
     enableUpdateCheck = false;
-    keybindings = [        
+    keybindings = [ 
+      {
+          key = "alt+n";
+          command = "explorer.newFile";        
+      }
+      {
+          key = "alt+shift+n";
+          command = "explorer.newFolder";
+      }
       {
           key = "alt+j";
           command = "workbench.action.previousEditor";

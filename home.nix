@@ -22,12 +22,6 @@ in
   # home.file.".xxx".text = ''
   #     xxx
   # '';
-
-  home.file.".config/kitty" = {
-    source = ./programs/kitty;
-    recursive = true;
-  };
-
   home.file.".config/waybar" = {
     source = ./programs/waybar;
     recursive = true;
@@ -52,8 +46,8 @@ in
   
     neofetch
 
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
+    eza
+     # A command-line fuzzy finder
 
     tree
 
@@ -142,11 +136,68 @@ in
     configDir = ./programs/eww;
   };
 
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      fade-in = 0.5;
+      clock = true;
+      effect-blur = "7x5";
+      image = "${./wallpaper.jpg}";
+
+      indicator-radius = 150;
+      indicator-thickness = 10;
+
+      inside-color = "000000";
+      inside-clear-color = "000000";
+      inside-caps-lock-color = "000000";
+      inside-ver-color = "000000";
+      inside-wrong-color = "ee2e2400";
+
+      ring-color = "ffffff";
+      ring-clear-color = "231f20";
+      ring-caps-lock-color = "6d91ad";
+      ring-ver-color = "231f20";
+      ring-wrong-color = "231f20";
+
+      text-color = "92dee0";
+      text-clear-color = "92dee0";
+      text-ver-color = "92dee0";
+      text-wrong-color = "ff0000";
+    };
+  };
+
+  programs.kitty = {
+    enable = true;
+    font = {
+      package = pkgs.nerdfonts;
+      name = "Hack";
+      size = 15;
+    };
+    settings = {  
+      background_opacity = "0.5";
+      font_size = "13.0";
+      cursor_shape = "beam";
+      touch_scroll_multiplier = "7.0";
+
+      foreground           = "#d8d8d8";
+      background           = "#000000";
+    };
+          
+    keybindings = {
+      "alt+n" = "new_tab";
+      "alt+q" = "close_tab";
+      "alt+k" = "next_tab";
+      "alt+j" = "previous_tab";    
+    };
+  };
+  
   imports = [
     ./programs/hyprland.nix
     ./programs/wlogout/wlogout.nix
     ./programs/vsc.nix
     ./programs/dunst.nix
+    ./programs/omposh/omposh.nix
   ];
     
   # This value determines the Home Manager release that your

@@ -16,8 +16,9 @@
   # ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
- 
+  boot.loader.efi.canTouchEfiVariables = true;   
+  boot.supportedFilesystems = [ "ntfs" ];
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -59,9 +60,6 @@
   #    xkbVariant = "";
   # };
 
-  boot.supportedFilesystems = [
-    "ntfs"
-  ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   fileSystems = {
@@ -103,6 +101,12 @@
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
   '';
+
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;

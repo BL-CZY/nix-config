@@ -6,20 +6,20 @@
 
     layout = [
       {
-        label = "logout";
-        action = "hyprctl dispatch exit";
-        text = "  Logout  ";
+        label = "lock";
+        action = "sleep 1 && exec swaylock";
+        text = "  Lock  ";
         keybind = "l";
       }
       {
         label = "reboot";
-        action = "systemctl reboot";
+        action = "sleep 1 && systemctl reboot";
         text = " Reboot ";
         keybind = "u";
       }
       {
         label = "shutdown";
-        action = "systemctl poweroff";
+        action = "sleep 1 && systemctl poweroff";
         text = "Shutdown";
         keybind = "s";
       }
@@ -60,10 +60,10 @@
         opacity: 0.9;
       }
            
-      #logout {
+      #lock {
       	margin: 50px;
       	border-radius: 20px;
-      	background-image: image(url("${./icons/logout.png}"));
+      	background-image: image(url("${./icons/lock.png}"));
       }
       
       #reboot {
