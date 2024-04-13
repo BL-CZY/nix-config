@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
   imports =
@@ -14,18 +14,23 @@
     # "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
     # "/nix/var/nix/profiles/per-user/root/channels"
   # ];
+
+  security.protectKernelImage = false;
+  
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;   
   boot.supportedFilesystems = [ "ntfs" ];
-
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];    
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -181,20 +186,28 @@
       thunar-volman
     ];
   };
+
+  # builtins.fetchTarball = {
+  #   # Get the revision by choosing a version from https://github.com/nix-community/NUR/commits/master
+  #   url = "https://github.com/nix-community/NUR/archive/3a6a6f4da737da41e27922ce2cfacf68a109ebce.tar.gz";
+  #   # Get the hash by running `nix-prefetch-url --unpack <url>` on the above url
+  #   sha256 = "04387gzgl8y555b3lkz9aiw9xsldfg4zmzp930m62qw8zbrvrshd";
+  # };
   
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # nur.repos.xddxdd.wechat-uos
+    eww-wayland
+    obsidian
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects
     vim
     wget
     git
     gh
-    whatsapp-for-linux
     steam
     gimp
-    jetbrains.pycharm-community
     jellyfin-ffmpeg
     home-manager
     hyprland

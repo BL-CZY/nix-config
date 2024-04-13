@@ -4,4 +4,4 @@
                                :y "20px"
                                :anchor "top right")
            :stacking "overlay"
-           (label :text "TEST"))
+           (label :text "TESTee"))

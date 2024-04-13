@@ -86,13 +86,15 @@
           "type": "root"
         },
         {
+          "foreground": "#d8d8d8",
           "properties": {
-            "folder_icon": "\uf07b ",
-            "folder_separator_icon": " \uf061 ",
-            "home_icon": "\ueb06 "
+            "folder_icon": "\uf07b",
+            "folder_separator_icon": "/",
+            "home_icon": "~",
+            "style": "agnoster_full"
           },
-          "style": "plain",
-          "template": " {{ .Path }} ",
+          "style": "diamond",
+          "template": " \ue5ff {{ .Path }} ",
           "type": "path"
         }
       ],
@@ -121,7 +123,7 @@
             "always_enabled": true
           },
           "foreground": "#00cc30",
-          "template": "[tpl#nixos] ~$ ",
+          "template": " \ue285 ",
           "type": "status"       
         } 
       ],

@@ -9,7 +9,17 @@
       rust-lang.rust-analyzer
     ];
     enableUpdateCheck = false;
-    keybindings = [ 
+    keybindings = [
+      {
+          key = "alt+shift+[";
+          command = "editor.fold";
+          when = "editorTextFocus && foldingEnabled";
+      }
+      {
+          key = "alt+shift+]";
+          command = "editor.unfold";
+          when = "editorTextFocus && foldingEnabled";        
+      } 
       {
           key = "alt+n";
           command = "explorer.newFile";        
@@ -125,6 +135,8 @@
       "window.menuBarVisibility" = "toggle";
       "workbench.activityBar.location" = "hidden";
       "explorer.confirmDelete" = false;
+      "editor.fontFamily" = "'Hack Nerd Font'";
+      "catppuccin.accentColor" = "blue";
     };
   };
 }

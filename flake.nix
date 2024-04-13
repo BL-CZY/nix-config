@@ -2,6 +2,8 @@
   description = "Nixos config flake";
 
   inputs = {
+    nur.url = "github:nix-community/NUR";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
 
     home-manager = {
@@ -12,7 +14,7 @@
     # ags.url = "github:Aylur/ags";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nur, ... }: {
     nixosConfigurations = {
       # 这里的 my-nixos 替换成你的主机名称
       nixos = nixpkgs.lib.nixosSystem {
@@ -35,6 +37,8 @@
             # 取消注释下面这一行，就可以在 home.nix 中使用 flake 的所有 inputs 参数了
             # home-manager.extraSpecialArgs = inputs;
           }
+
+          nur.nixosModules.nur
         ];
       };
     };

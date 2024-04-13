@@ -40,6 +40,8 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
+    google-chrome
+    cmatrix
     gedit
     rustup
     xarchiver
@@ -85,13 +87,20 @@ in
     # };
 
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome.gnome-themes-extra;
+      # name = "Adwaita-dark";
+      # package = pkgs.gnome.gnome-themes-extra;
+      name = "Catppuccin-Frappe-Standard-Blue-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "blue" ];
+        size = "standard";
+        tweaks = [ "rimless" ];
+        variant = "frappe";
+      };
     };
 
     iconTheme = {
-     # package = gruvboxPlus;
-     name = "Qogir";
+     package = pkgs.colloid-icon-theme;
+     name = "Colloid-dark";
     };
   };
 
@@ -125,16 +134,16 @@ in
     themes = {
       autumn_night_transparent = {
         "inherits" = "catppuccin_macchiato";
-        # "ui.background" = { };
+        "ui.background" = { };
       };
     };
   };
 
-  programs.eww = {
-    enable = true;
-    package = pkgs.eww;
-    configDir = ./programs/eww;
-  };
+  # programs.eww = {
+  #   enable = true;
+  #   package = pkgs.eww-wayland;
+  #   configDir = ./programs/eww;
+  # };
 
   programs.swaylock = {
     enable = true;
@@ -174,14 +183,83 @@ in
       name = "Hack";
       size = 15;
     };
-    settings = {  
-      background_opacity = "0.5";
+    settings = {
+      window_padding_width = "15";  
+      background_opacity = "0.7";
       font_size = "13.0";
       cursor_shape = "beam";
       touch_scroll_multiplier = "7.0";
 
-      foreground           = "#d8d8d8";
-      background           = "#000000";
+      # The basic colors
+      foreground              ="#CDD6F4";
+      background              ="#1E1E2E";
+      selection_foreground    ="#1E1E2E";
+      selection_background    ="#F5E0DC";
+      
+      # Cursor colors
+      cursor                  ="#F5E0DC";
+      cursor_text_color       ="#1E1E2E";
+      
+      # URL underline color wh="n hover";ing with mouse
+      url_color               ="#F5E0DC";
+      
+      # Kitty window border co="ors
+      active_border_color     ="#B4BEFE";
+      inactive_border_color   ="#6C7086";
+      bell_border_color       ="#F9E2AF";
+      
+      # OS Window titlebar col="rs
+      wayland_titlebar_color  ="#1E1E2E";
+      macos_titlebar_color    ="#1E1E2E";
+      
+      # Tab bar colors
+      active_tab_foreground   ="#11111B";
+      active_tab_background   ="#CBA6F7";
+      inactive_tab_foreground ="#CDD6F4";
+      inactive_tab_background ="#181825";
+      tab_bar_background      ="#11111B";
+      
+      # Colors for marks (marked text in the terminal)
+      mark1_foreground = "#1E1E2E";
+      mark1_background = "#B4BEFE";
+      mark2_foreground = "#1E1E2E";
+      mark2_background = "#CBA6F7";
+      mark3_foreground = "#1E1E2E";
+      mark3_background = "#74C7EC";
+      
+      # The 16 terminal colors
+      
+      # black
+      color0 = "#45475A";
+      color8 = "#585B70";
+      
+      # red
+      color1 = "#F38BA8";
+      color9 = "#F38BA8";
+      
+      # green
+      color2  = "#A6E3A1";
+      color10 = "#A6E3A1";
+      
+      # yellow
+      color3  = "#F9E2AF";
+      color11 = "#F9E2AF";
+      
+      # blue
+      color4  = "#89B4FA";
+      color12 = "#89B4FA";
+      
+      # magenta
+      color5  = "#F5C2E7";
+      color13 = "#F5C2E7";
+      
+      # cyan
+      color6  = "#94E2D5";
+      color14 = "#94E2D5";
+      
+      # white
+      color7  = "#BAC2DE";
+      color15 = "#A6ADC8";
     };
           
     keybindings = {

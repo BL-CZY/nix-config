@@ -5,6 +5,7 @@ let
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
+    eww daemon &
   
     sleep 1
   
@@ -12,7 +13,6 @@ let
 
     sleep 1
     
-    ${pkgs.ibus}/bin/ibus start &
   '';
 
   screenShotScript = pkgs.pkgs.writeShellScriptBin "screenShot" ''
@@ -20,7 +20,52 @@ let
     grim -g "$(slurp)" $output
     qimgv $output 
   '';
-in
+
+  syncVolume = pkgs.pkgs.writeShellScriptBin "syncVol" ''
+    eww open --duration 1s popup_vol
+    current_volume=0.00
+    
+    #get the result
+    output=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+    
+    #parse the current volume
+    current_volume=$(echo "$output" | grep -oE '[+-]?[0-9]+([.][0-9]+)?')
+    
+    echo $current_volume
+    
+    #if it's 1.00, set it to 100
+    if [ $(echo $current_volume) == "1.00" ]; then
+      final="100"
+    else
+      # Check if the first character is not 0
+      if [[ "$current_volume" =~ ^[1-9] ]]; then
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 100%
+        final="100"
+      else
+        final=$(echo $current_volume | cut -d'.' -f2 | cut -c1-2)
+      fi
+    fi
+    
+    eww update current_volume=$final
+  '';
+
+  
+  syncBrightness = pkgs.pkgs.writeShellScriptBin "syncBri" ''
+    eww open --duration 1s popup_bri
+    current_brightness=0.00
+    
+    # Specify the device name
+    device="intel_backlight"
+    
+    # Get the current brightness and maximum brightness
+    current_brightness=$(brightnessctl -d $device g)
+    max_brightness=$(brightnessctl -d $device m)
+    
+    # Calculate the percentage
+    percentage=$((current_brightness * 100 / max_brightness))
+     
+    eww update current_brightness=$percentage
+  '';in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -58,7 +103,7 @@ in
  
         allow_tearing = false;
         resize_on_border = true;
-        no_border_on_floating = true;
+        # no_border_on_floating = true;
       };
  
       decoration = {
@@ -66,8 +111,8 @@ in
  
         blur = {
           enabled = true;
-          size = 3;
-          passes = 1;
+          size = 5;
+          passes = 2;
         };
  
         drop_shadow = "yes";
@@ -75,8 +120,8 @@ in
         shadow_render_power = 3;
         "col.shadow" = "rgba(1a1a1aee)";
 
-        active_opacity = 0.9;
-        inactive_opacity = 0.9;
+        active_opacity = 1;
+        inactive_opacity = 1;
       };
  
       animations = {
@@ -89,7 +134,8 @@ in
           "windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
+          "fadeIn, 0, 7, default"
+          "fadeOut, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
       };    
@@ -185,11 +231,11 @@ in
       ];
 
       bindel = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; ${syncVolume}/bin/syncVol"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; ${syncVolume}/bin/syncVol"
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set +5%"
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-; ${syncBrightness}/bin/syncBri"
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5%; ${syncBrightness}/bin/syncBri"
       ];
 
       windowrule = [
@@ -197,27 +243,35 @@ in
         "center, ^(qemu)$"
         "minsize 860 540, ^(qemu)$"
 
+        "float, ^(kitty)$"
+        "size 960 640, ^(kitty)$"
+        "center, ^(kitty)$"
+
         "float, ^(Thunar)$"
         "minsize 960 640, ^(Thunar)$"
+        "center, ^(Thunar)$"
 
         "float, ^(thunar)$"
+        "center, ^(thunar)$"
         "minsize 960 640, ^(thunar)$"
 
         "float, ^(qimgv)$"
+        "center, ^(qimgv)$"
                 
         "float, ^(gedit)$"
+        "center, ^(gedit)$"
 
         "float, ^(vlc)$"
+        "center, ^(vlc)$"
 
         "nofocus, ^(Ibus-ui-gtk3)$"
-        "center, ^(Ibus-ui-gtk3)$"
       ];
 
       exec-once = [
         ''${startupScript}/bin/start''
         "wl-paste --type text --watch cliphist store #Stores only text data"
         "wl-paste --type image --watch cliphist store #Stores only image data"
-        "ibus start"
+        "ibus-daemon -rxRd"
       ];
     };
   };
