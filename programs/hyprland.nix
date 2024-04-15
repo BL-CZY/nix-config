@@ -5,7 +5,6 @@ let
     ${pkgs.waybar}/bin/waybar &
     ${pkgs.swww}/bin/swww init &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
-    eww daemon &
   
     sleep 1
   
@@ -156,11 +155,12 @@ let
       misc = {
         force_default_wallpaper = 0;
       };
- 
-      "device:epic-mouse-v1" = {
-        sensitivity = -0.5;
+
+      device = {
+          name = "epic-mouse-v1";
+          sensitivity = "-0.5";
       };
- 
+              
       "$mainMod" = "SUPER";
  
       bind = [      
@@ -263,8 +263,6 @@ let
 
         "float, ^(vlc)$"
         "center, ^(vlc)$"
-
-        "nofocus, ^(Ibus-ui-gtk3)$"
       ];
 
       exec-once = [

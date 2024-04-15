@@ -3,7 +3,7 @@
 }
 
 #waybar {
-  background: #171717;
+  background: transparent;
   color: #fff;
   border-radius: 10px;
   border: 2px solid #468284;
@@ -38,6 +38,7 @@
 
 #window {
   color: #fff;
+  background: transparent;
 }
 
 #network {

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 let
   usrname = "tpl";
@@ -40,6 +40,8 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
+    socat
+    jq
     google-chrome
     cmatrix
     gedit
@@ -89,12 +91,12 @@ in
     theme = {
       # name = "Adwaita-dark";
       # package = pkgs.gnome.gnome-themes-extra;
-      name = "Catppuccin-Frappe-Standard-Blue-Dark";
+      name = "Catppuccin-Macchiato-Standard-Blue-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard";
         tweaks = [ "rimless" ];
-        variant = "frappe";
+        variant = "macchiato";
       };
     };
 
@@ -104,6 +106,20 @@ in
     };
   };
 
+   programs.ags = {
+    enable = true;
+
+    # null or path, leave as null if you don't want hm to manage the config
+    configDir = null;
+
+    # additional packages to add to gjs's runtime
+    extraPackages = with pkgs; [
+      gtksourceview
+      webkitgtk
+      accountsservice
+    ];
+  };
+   
   # git 相关配置
   programs.git = {
     enable = true;
@@ -133,7 +149,7 @@ in
     }];
     themes = {
       autumn_night_transparent = {
-        "inherits" = "catppuccin_macchiato";
+        "inherits" = "catppuccin_frappe";
         "ui.background" = { };
       };
     };
@@ -190,76 +206,59 @@ in
       cursor_shape = "beam";
       touch_scroll_multiplier = "7.0";
 
-      # The basic colors
-      foreground              ="#CDD6F4";
-      background              ="#1E1E2E";
-      selection_foreground    ="#1E1E2E";
-      selection_background    ="#F5E0DC";
+      foreground              = "#CAD3F5";
+      background              = "#24273A";
+      selection_foreground    = "#24273A";
+      selection_background    = "#F4DBD6";
       
-      # Cursor colors
-      cursor                  ="#F5E0DC";
-      cursor_text_color       ="#1E1E2E";
+      cursor                  = "#F4DBD6";
+      cursor_text_color       = "#24273A";
       
-      # URL underline color wh="n hover";ing with mouse
-      url_color               ="#F5E0DC";
+      url_color               = "#F4DBD6";
       
-      # Kitty window border co="ors
-      active_border_color     ="#B4BEFE";
-      inactive_border_color   ="#6C7086";
-      bell_border_color       ="#F9E2AF";
+      active_border_color     = "#B7BDF8";
+      inactive_border_color   = "#6E738D";
+      bell_border_color       = "#EED49F";
       
-      # OS Window titlebar col="rs
-      wayland_titlebar_color  ="#1E1E2E";
-      macos_titlebar_color    ="#1E1E2E";
+      wayland_titlebar_color  = "#24273A";
+      macos_titlebar_color    = "#24273A";
       
-      # Tab bar colors
-      active_tab_foreground   ="#11111B";
-      active_tab_background   ="#CBA6F7";
-      inactive_tab_foreground ="#CDD6F4";
-      inactive_tab_background ="#181825";
-      tab_bar_background      ="#11111B";
+      active_tab_foreground   = "#181926";
+      active_tab_background   = "#C6A0F6";
+      inactive_tab_foreground = "#CAD3F5";
+      inactive_tab_background = "#1E2030";
+      tab_bar_background      = "#181926";
       
-      # Colors for marks (marked text in the terminal)
-      mark1_foreground = "#1E1E2E";
-      mark1_background = "#B4BEFE";
-      mark2_foreground = "#1E1E2E";
-      mark2_background = "#CBA6F7";
-      mark3_foreground = "#1E1E2E";
-      mark3_background = "#74C7EC";
+      mark1_foreground = "#24273A";
+      mark1_background = "#B7BDF8";
+      mark2_foreground = "#24273A";
+      mark2_background = "#C6A0F6";
+      mark3_foreground = "#24273A";
+      mark3_background = "#7DC4E4";
       
-      # The 16 terminal colors
+      color0 = "#494D64";
+      color8 = "#5B6078";
       
-      # black
-      color0 = "#45475A";
-      color8 = "#585B70";
+      color1 = "#ED8796";
+      color9 = "#ED8796";
       
-      # red
-      color1 = "#F38BA8";
-      color9 = "#F38BA8";
+      color2  = "#A6DA95";
+      color10 = "#A6DA95";
       
-      # green
-      color2  = "#A6E3A1";
-      color10 = "#A6E3A1";
+      color3  = "#EED49F";
+      color11 = "#EED49F";
       
-      # yellow
-      color3  = "#F9E2AF";
-      color11 = "#F9E2AF";
+      color4  = "#8AADF4";
+      color12 = "#8AADF4";
       
-      # blue
-      color4  = "#89B4FA";
-      color12 = "#89B4FA";
+      color5  = "#F5BDE6";
+      color13 = "#F5BDE6";
       
-      # magenta
-      color5  = "#F5C2E7";
-      color13 = "#F5C2E7";
+      color6  = "#8BD5CA";
+      color14 = "#8BD5CA";
       
-      # cyan
-      color6  = "#94E2D5";
-      color14 = "#94E2D5";
-      
-      # white
-      color7  = "#BAC2DE";
-      color15 = "#A6ADC8";
+      color7  = "#B8C0E0";
+      color15 = "#A5ADCB";
     };
           
     keybindings = {
@@ -276,6 +275,7 @@ in
     ./programs/vsc.nix
     ./programs/dunst.nix
     ./programs/omposh/omposh.nix
+    inputs.ags.homeManagerModules.default
   ];
     
   # This value determines the Home Manager release that your

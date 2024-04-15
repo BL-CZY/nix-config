@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.vscode;
     extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
+      catppuccin.catppuccin-vsc
       rust-lang.rust-analyzer
     ];
     enableUpdateCheck = false;
@@ -131,7 +131,7 @@
       "git.autofetch" = true;
       "editor.cursorSmoothCaretAnimation" = "on";
       "workbench.iconTheme" = "Monokai Pro Icons";
-      "workbench.colorTheme" = "Dracula";
+      "workbench.colorTheme" = "Catppuccin Macchiato";
       "window.menuBarVisibility" = "toggle";
       "workbench.activityBar.location" = "hidden";
       "explorer.confirmDelete" = false;

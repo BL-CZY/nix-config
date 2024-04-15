@@ -23,6 +23,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
   nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
+    "openssl-1.1.1w"
   ];    
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -150,7 +151,6 @@
   programs.steam.enable = true;
   programs.hyprland = {
     enable = true;
-    enableNvidiaPatches = true;
     xwayland.enable = true;
   };
 
@@ -169,11 +169,12 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   services.xserver = {
-    enable = true;
-    displayManager = {
-      sddm.enable = true;
-      sddm.theme = "${import ./programs/sddm.nix {inherit pkgs; }}";
-    };
+    enable = true;    
+  };
+
+  services.displayManager = {
+    sddm.enable = true;
+    sddm.theme = "${import ./programs/sddm.nix {inherit pkgs; }}";
   };
 
   services.gvfs.enable = true;
@@ -193,12 +194,13 @@
   #   # Get the hash by running `nix-prefetch-url --unpack <url>` on the above url
   #   sha256 = "04387gzgl8y555b3lkz9aiw9xsldfg4zmzp930m62qw8zbrvrshd";
   # };
-  
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # nur.repos.xddxdd.wechat-uos
-    eww-wayland
+    # wechat-uos
+    eww
     obsidian
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects
