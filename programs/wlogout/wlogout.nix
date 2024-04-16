@@ -37,10 +37,10 @@
       }
 
       button {
-        color: #FFFFFF;
+        color: #cad3f5;
         font-family: "monospace";
         font-size: 20px;
-	      background-color: #1A1B26;
+	      background-color: #24273a;
 
         border-radius: 10px;
 	      border-style: none;
@@ -49,11 +49,12 @@
         background-repeat: no-repeat;
 	      background-position: center;
 	      background-size: 25%;
+
+        border: 2px solid #8aadf4;
       }
 
       button:focus, button:active, button:hover {
-	      background-color: #468284;
-	      outline-style: none;
+	      background-color: #5b6078;
       }
 
       #lock, #logout, #suspend, #hibernate, #shutdown, #reboot {

@@ -3,7 +3,7 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
+    # ${pkgs.swww}/bin/swww init &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
   
     sleep 1
@@ -12,8 +12,51 @@ let
 
     sleep 1
 
-    sh ${./wechat.sh}
+    ${checkVolume}/bin/checkVol &
+    ${checkBrightness}/bin/checkBri &
+    eww daemon &
+    # ags
   '';
+
+  checkVolume = pkgs.pkgs.writeShellScriptBin "checkVol" ''    
+    while [ true ]; do
+        case $(eww get countdown) in
+            "3")
+                eww update countdown="2"
+            ;;
+    
+            "2")
+                eww update countdown="1"
+            ;;
+    
+            "1")
+                eww update countdown="0"
+                eww close popup_vol
+            ;;
+        esac
+        sleep 1
+    done
+  '';
+
+  checkBrightness = pkgs.pkgs.writeShellScriptBin "checkBri" ''    
+      while [ true ]; do
+          case $(eww get countdownbri) in
+              "3")
+                  eww update countdownbri="2"
+              ;;
+      
+              "2")
+                  eww update countdownbri="1"
+              ;;
+      
+              "1")
+                  eww update countdownbri="0"
+                  eww close popup_bri
+              ;;
+          esac
+          sleep 1
+      done
+    '';
 
   screenShotScript = pkgs.pkgs.writeShellScriptBin "screenShot" ''
     output="$HOME/Pictures/ScreenShots"/"$(date +%Y%m%d-%H%M%S)".png
@@ -21,8 +64,12 @@ let
     qimgv $output 
   '';
 
-  syncVolume = pkgs.pkgs.writeShellScriptBin "syncVol" ''
-    eww open --duration 1s popup_vol
+  syncVolume = pkgs.pkgs.writeShellScriptBin "syncVol" ''    
+    if [ $(eww get countdown) == "0" ]; then
+        eww open popup_vol
+    fi
+    eww update countdown=2
+
     current_volume=0.00
     
     #get the result
@@ -51,7 +98,12 @@ let
 
   
   syncBrightness = pkgs.pkgs.writeShellScriptBin "syncBri" ''
-    eww open --duration 1s popup_bri
+
+    if [ $(eww get countdownbri) == "0" ]; then
+        eww open popup_bri
+    fi
+    eww update countdownbri=2
+
     current_brightness=0.00
     
     # Specify the device name
@@ -96,8 +148,8 @@ let
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(468284ee)";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgba(8AADF4FF)";
+        "col.inactive_border" = "rgba(363a4fff)";
  
         layout = "dwindle";
  

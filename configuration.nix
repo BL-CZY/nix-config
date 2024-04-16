@@ -53,19 +53,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-    #Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  #  
-  #   #Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  #  
-  #   #Configure keymap in X11
-  # services.xserver = {
-  #    layout = "us";
-  #    xkbVariant = "";
-  # };
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   fileSystems = {
@@ -169,7 +156,8 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   services.xserver = {
-    enable = true;    
+    enable = true;
+    desktopManager.runXdgAutostartIfNone = true; 
   };
 
   services.displayManager = {
@@ -188,18 +176,10 @@
     ];
   };
 
-  # builtins.fetchTarball = {
-  #   # Get the revision by choosing a version from https://github.com/nix-community/NUR/commits/master
-  #   url = "https://github.com/nix-community/NUR/archive/3a6a6f4da737da41e27922ce2cfacf68a109ebce.tar.gz";
-  #   # Get the hash by running `nix-prefetch-url --unpack <url>` on the above url
-  #   sha256 = "04387gzgl8y555b3lkz9aiw9xsldfg4zmzp930m62qw8zbrvrshd";
-  # };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # nur.repos.xddxdd.wechat-uos
-    # wechat-uos
     eww
     obsidian
     libsForQt5.qt5.qtquickcontrols2   
@@ -220,7 +200,7 @@
     swww
     wofi
     networkmanagerapplet
-    dunst
+    # dunst
     libnotify
     brightnessctl
     grim
@@ -279,8 +259,10 @@
   i18n.inputMethod = {
     # enabled = "fcitx5";
     # fcitx5.addons = with pkgs; [
-    #   fcitx5-rime
-    #   fcitx5-chinese-addons
+      # fcitx5-rime
+      # fcitx5-chinese-addons
+      # fcitx5-mozc
+      # fcitx5-gtk
     # ];
 
     # 我现在用 ibus

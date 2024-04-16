@@ -6,27 +6,24 @@
   "position": "top",
   "margin-bottom": 0,
   "modules-left": [
-    "clock",
     "custom/separator",
     "hyprland/workspaces",
     "custom/separator",
-    "tray"
+    "tray",
+    "curstom/separator"
     // "custom/separator"
   ],
   "modules-center": [
-    "hyprland/window"
-    // "tray"
+    "clock"
   ],
   "modules-right": [
     // "curstom/separator"
-    "temperature",
     "memory",
     "cpu",
-    "pulseaudio",
     "battery",
-    "network",
     "custom/separator",
-    "custom/powermenu"
+    "custom/powermenu",
+    "custom/separator"
   ],
   "custom/separator": {
     "exec": "echo \" \"",
@@ -34,11 +31,11 @@
   },
   "tray": {
     "icon-size": 16,
-    "spacing": 8
+    "spacing": 14
   },
   "clock": {
     // 24 hour
-    "format": "  {:%H:%M} ",
+    "format": "   {:%H:%M} ",
     // 12 hour
     // "format": " {:%I:%M %p} ",
     "interval": 60,
@@ -53,27 +50,27 @@
     "all-outputs": false,
     "format-icons": {
       // 1-10
-      "1": "1",
-      "2": "2",
-      "3": "3",
-      "4": "4",
-      "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "10",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
+      "6": "",
+      "7": "",
+      "8": "",
+      "9": "",
+      "10": "",
       // 11-10
-      "11": "1",
-      "12": "2",
-      "13": "3",
-      "14": "4",
-      "15": "5",
-      "16": "6",
-      "17": "7",
-      "18": "8",
-      "19": "9",
-      "110": "10"
+      "11": "",
+      "12": "",
+      "13": "",
+      "14": "",
+      "15": "",
+      "16": "",
+      "17": "",
+      "18": "",
+      "19": "",
+      "110": ""
       
       // // 1-10
       // "1": "一",
@@ -119,11 +116,11 @@
     ]
   },
   "memory": {
-    "format": "RAM {}% ",
+    "format": "RAM {}%",
     "tooltip": "false"
   },
   "cpu": {
-    "format": "CPU {usage}% ",
+    "format": "CPU {usage}%",
     "tooltip": "false"
   },
   "pulseaudio": {
@@ -134,7 +131,7 @@
     "format-icons": [" ", " ","󰕾 ", " "]
   },
   "battery": {
-    "format": "{capacity}% {icon}",
+    "format": "{icon} {capacity}% ",
     "format-icons": [
       "  ",
       "  ",
@@ -144,9 +141,8 @@
     ]
   },
   "custom/powermenu": {
-    "format": "   ",
+    "format": "",
     "tooltip": false,
     "on-click": "wlogout"
   }
 }
-

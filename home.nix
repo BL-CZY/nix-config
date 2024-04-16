@@ -32,6 +32,11 @@ in
     recursive = true;
   };
 
+  home.file.".config/btop" = {
+    source = ./programs/btop;
+    recursive = true;
+  };
+
   # home.file.".config/dunst" = {
     # source = ./programs/dunst;
     # recursive = true;
@@ -40,8 +45,17 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
-    socat
-    jq
+    (wechat-uos.override {
+      uosLicense = pkgs.fetchurl {
+        url = "https://aur.archlinux.org/cgit/aur.git/plain/license.tar.gz?h=wechat-uos-bwrap";
+        hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
+      };
+    })
+
+    bun
+    dart-sass
+    fd
+    
     google-chrome
     cmatrix
     gedit
@@ -49,9 +63,6 @@ in
     xarchiver
   
     neofetch
-
-    eza
-     # A command-line fuzzy finder
 
     tree
 
@@ -286,7 +297,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
