@@ -11,7 +11,8 @@ let
     ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
 
     sleep 1
-    
+
+    sh ${./wechat.sh}
   '';
 
   screenShotScript = pkgs.pkgs.writeShellScriptBin "screenShot" ''
@@ -133,8 +134,8 @@ let
           "windowsOut, 1, 7, default, popin 80%"
           "border, 1, 10, default"
           "borderangle, 1, 8, default"
-          "fadeIn, 0, 7, default"
-          "fadeOut, 1, 7, default"
+          "fade, 1, 7, default"
+          "fadeLayers, 1, 7, default"
           "workspaces, 1, 6, default"
         ];
       };    
