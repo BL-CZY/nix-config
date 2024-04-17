@@ -141,6 +141,10 @@ in
   programs.bash = {
     enable = true;
     enableCompletion = true;
+    bashrcExtra = ''
+      export GTK_IM_MODULE=fcitx
+      export QT_IM_MODULE=fcitx
+    '';
   };
 
   programs.helix = {

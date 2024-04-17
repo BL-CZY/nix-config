@@ -157,6 +157,10 @@
 
   services.xserver = {
     enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
     desktopManager.runXdgAutostartIfNone = true; 
   };
 
@@ -257,36 +261,20 @@
   };
 
   i18n.inputMethod = {
-    # enabled = "fcitx5";
-    # fcitx5.addons = with pkgs; [
-      # fcitx5-rime
-      # fcitx5-chinese-addons
-      # fcitx5-mozc
-      # fcitx5-gtk
-    # ];
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-rime
+      fcitx5-chinese-addons
+      fcitx5-gtk
+      libsForQt5.fcitx5-qt
+      rime-data
+    ];
 
     # 我现在用 ibus
-    enabled = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      libpinyin
-      rime
-    ];
-  }; 
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #    default_session.command = ''
-  #     ${pkgs.greetd.tuigreet}/bin/tuigreet \
-  #       --time \
-  #       --asterisks \
-  #       --user-menu \
-  #       --cmd Hyprland
-  #   '';
-  #   };
-  # };
-
-  # environment.etc."greetd/environments".text = ''
-  #   Hyprland
-  # '';
+    # enabled = "ibus";
+    # ibus.engines = with pkgs.ibus-engines; [
+      # libpinyin
+      # rime
+    # ];
+  };
 }
