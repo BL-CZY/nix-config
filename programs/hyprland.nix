@@ -8,13 +8,14 @@ let
   
     sleep 1
   
-    ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
+    # ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
 
     sleep 1
 
     ${checkVolume}/bin/checkVol &
     ${checkBrightness}/bin/checkBri &
     eww daemon &
+    fcitx5 &
     # ags
   '';
 
@@ -59,9 +60,10 @@ let
     '';
 
   screenShotScript = pkgs.pkgs.writeShellScriptBin "screenShot" ''
-    output="$HOME/Pictures/ScreenShots"/"$(date +%Y%m%d-%H%M%S)".png
-    grim -g "$(slurp)" $output
-    qimgv $output 
+    # output="$HOME/Pictures/ScreenShots"/"$(date +%Y%m%d-%H%M%S)".png
+    # grim -g "$(slurp)" $output
+    # qimgv $output
+    grim -g "$(slurp)" - | swappy -f -
   '';
 
   syncVolume = pkgs.pkgs.writeShellScriptBin "syncVol" ''    

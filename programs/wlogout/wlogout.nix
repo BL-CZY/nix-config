@@ -7,7 +7,7 @@
     layout = [
       {
         label = "lock";
-        action = "sleep 1 && exec swaylock";
+        action = "sleep 1 && exec swaylock -fF";
         text = "  Lock  ";
         keybind = "l";
       }

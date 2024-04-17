@@ -37,11 +37,11 @@ in
     recursive = true;
   };
 
-  # home.file.".config/dunst" = {
-    # source = ./programs/dunst;
-    # recursive = true;
-  # };
-
+  home.file.".config/swappy" = {
+    source = ./programs/swappy;
+    recursive = true;
+  };
+  
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
@@ -52,9 +52,7 @@ in
       };
     })
 
-    bun
-    dart-sass
-    fd
+    swappy
     
     google-chrome
     cmatrix
@@ -183,27 +181,30 @@ in
       fade-in = 0.5;
       clock = true;
       effect-blur = "7x5";
-      image = "${./wallpaper.jpg}";
+      image = "${./programs/wallpaper.jpg}";
 
       indicator-radius = 150;
       indicator-thickness = 10;
 
-      inside-color = "000000";
-      inside-clear-color = "000000";
-      inside-caps-lock-color = "000000";
-      inside-ver-color = "000000";
-      inside-wrong-color = "ee2e2400";
+      inside-color = "#24273a";
+      inside-clear-color = "#24273a";
+      inside-caps-lock-color = "#24273a";
+      inside-ver-color = "#24273a";
+      inside-wrong-color = "#ed8796";
 
-      ring-color = "ffffff";
-      ring-clear-color = "231f20";
-      ring-caps-lock-color = "6d91ad";
-      ring-ver-color = "231f20";
-      ring-wrong-color = "231f20";
+      ring-color = "#8aadf4";
+      ring-clear-color = "#8aadf4";
+      ring-caps-lock-color = "#8aadf4";
+      ring-ver-color = "#8aadf4";
+      ring-wrong-color = "#ee99a0";
 
-      text-color = "92dee0";
-      text-clear-color = "92dee0";
-      text-ver-color = "92dee0";
-      text-wrong-color = "ff0000";
+      text-color = "#cad3f5";
+      text-clear-color = "#cad3f5";
+      text-ver-color = "#cad3f5";
+      text-wrong-color = "#cad3f5";
+
+      key-hl-color = "#a6da95";
+      bs-hl-color = "#ed8796";
     };
   };
 
@@ -289,7 +290,7 @@ in
     ./programs/wlogout/wlogout.nix
     ./programs/vsc.nix
     ./programs/dunst.nix
-    ./programs/omposh/omposh.nix
+    ./programs/starship/starship.nix
     inputs.ags.homeManagerModules.default
   ];
     

@@ -53,14 +53,14 @@ pkgs.stdenv.mkDerivation {
     BackgroundImageVAlignment="center"
     ## As before but for the vertical position of the background picture relative to its visible area.
     
-    MainColor="white"
+    MainColor="#c6d0f5"
     ## Used for all elements when not focused/hovered etc. Usually the best effect is achieved by having this be either white or a very dark grey like #444 (not black for smoother antialias)
     ## Colors can be HEX or Qt names (e.g. red/salmon/blanchedalmond). See https://doc.qt.io/qt-5/qml-color.html
     
-    AccentColor="#abf1ff"
+    AccentColor="#8caaee"
     ## Used for elements in focus/hover/pressed. Should be contrasting to the background and the MainColor to achieve the best effect.
     
-    BackgroundColor="#444"
+    BackgroundColor="#303446"
     ## Used for the user and session selection background as well as for ScreenPadding and FormBackground when either is true. If PartialBlur and FormBackground are both enabled this color will blend with the blur effect.
     
     OverrideLoginButtonTextColor=""
@@ -129,7 +129,7 @@ pkgs.stdenv.mkDerivation {
     
     ## [Translations]
     
-    HeaderText="Welcome!"
+    HeaderText=""
     ## Header can be empty to not display any greeting at all. Keep it short.
     
     ## SDDM may lack proper translation for every element. Suger defaults to SDDM translations. Please help translate SDDM as much as possible for your language: https://github.com/sddm/sddm/wiki/Localization. These are in order as they appear on screen.
