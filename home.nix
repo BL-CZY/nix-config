@@ -216,7 +216,7 @@ in
       size = 15;
     };
     settings = {
-      window_padding_width = "15";  
+      window_padding_width = "20";  
       background_opacity = "0.7";
       font_size = "13.0";
       cursor_shape = "beam";

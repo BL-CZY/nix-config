@@ -1,5 +1,6 @@
 # Sets user-defined palette
 palette = "catppuccin_macchiato"
+add_newline = false
 
 [character]
 # Note the use of Catppuccin color 'maroon'
