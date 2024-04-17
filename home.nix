@@ -22,24 +22,37 @@ in
   # home.file.".xxx".text = ''
   #     xxx
   # '';
-  home.file.".config/waybar" = {
-    source = ./programs/waybar;
-    recursive = true;
-  };
 
-  home.file.".config/wofi" = {
-    source = ./programs/wofi;
-    recursive = true;
-  };
+  home.file = {
+    ".config/waybar" = {
+      source = ./programs/waybar;
+      recursive = true;
+    };
 
-  home.file.".config/btop" = {
-    source = ./programs/btop;
-    recursive = true;
-  };
+    ".config/wofi" = {
+      source = ./programs/wofi;
+      recursive = true;
+    };
 
-  home.file.".config/swappy" = {
-    source = ./programs/swappy;
-    recursive = true;
+    ".config/btop" = {
+      source = ./programs/btop;
+      recursive = true;
+    };
+
+    ".config/swappy" = {
+      source = ./programs/swappy;
+      recursive = true;
+    };
+
+    ".config/fcitx5" = {
+      source = ./programs/fcitx5/fcitx5;
+      recursive = true;
+    };
+
+    ".local/share/fcitx5/themes/catppuccin-macchiato" = {
+      source = ./programs/fcitx5/catppuccin-macchiato;
+      recursive = true;
+    };
   };
   
   fonts.fontconfig.enable = true;
