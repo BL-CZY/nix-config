@@ -65,6 +65,8 @@ in
       };
     })
 
+    libinput
+    wpsoffice
     swappy
     gamescope
     
@@ -91,6 +93,30 @@ in
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
+  };
+
+  services.fusuma = {
+    enable = true;
+    package = pkgs.fusuma;
+    settings = {
+      threshold = {
+        swipe = 0.1;
+        pinch = 0.1;
+      };
+      interval = {
+        swipe = 0.7;
+      };
+      pinch = {
+        "3" = {
+          "out" = {
+            command = "hyprctl dispatch fullscreen 0";
+          };
+          "in" = {
+            command = "hyprctl dispatch fullscreen 0";
+          };
+        };
+      };
+    };
   };
 
   qt = {
