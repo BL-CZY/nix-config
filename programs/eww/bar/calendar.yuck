@@ -1,0 +1,22 @@
+(defwindow calendar
+  :monitor 0
+  
+  :geometry (geometry :x "0%"
+                      :y "1%"
+                      :width "0px"
+                      :height "0px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive false
+  :focusable false
+  :wm-ignore "false"
+  (dropdown_calender))
+
+
+(defvar dropdown_window_hover_state "dropdown_window_unhover")
+(defvar cal "calendar_pre")
+(defwidget dropdown_calender []
+  (eventbox :onhover "eww update dropdown_window_hover_state=\"dropdown_window_hover\""
+            :onhoverlost "eww update dropdown_window_hover_state=\"dropdown_window_unhover\""
+            (box :class dropdown_window_hover_state
+                 (calendar :class cal))))

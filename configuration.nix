@@ -5,6 +5,21 @@
 { config, pkgs, nixpkgs, ... }:
 
 {
+  # Enable OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  # Load nvidia driver for Xorg and Wayland
+  # services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+  };
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -146,22 +161,11 @@
     #WLR_NO_HARDWARE_CURSORS = "1";
     #NIXOS_OZONE_WL = "1";
   };
-
-  hardware = {
-    opengl.enable = true;
-    nvidia.modesetting.enable = true;
-  };
-
+  
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
-    };
-  };
+  services.xserver.enable = true;
 
   services.displayManager = {
     sddm.enable = true;
@@ -183,7 +187,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # nur.repos.xddxdd.wechat-uos
-    eww
     obsidian
     libsForQt5.qt5.qtquickcontrols2   
     libsForQt5.qt5.qtgraphicaleffects

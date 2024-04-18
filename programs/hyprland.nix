@@ -141,6 +141,7 @@ let
         touchpad = {
           natural_scroll = 1;
           scroll_factor = 0.2;
+          disable_while_typing = false;
         };
  
         sensitivity = "0";
@@ -205,6 +206,7 @@ let
  
       gestures = {
         workspace_swipe = "on";
+        workspace_swipe_cancel_ratio = 0.15;
       };
  
       misc = {

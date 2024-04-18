@@ -66,6 +66,7 @@ in
     })
 
     swappy
+    gamescope
     
     google-chrome
     cmatrix
@@ -76,12 +77,12 @@ in
     neofetch
 
     tree
+    nnn
 
     nix-output-monitor
 
     btop  # replacement of htop/nmon
     qimgv
-
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
@@ -296,6 +297,12 @@ in
       "alt+k" = "next_tab";
       "alt+j" = "previous_tab";    
     };
+  };
+
+  programs.eww = {
+    enable = true;
+    package = pkgs.eww;
+    configDir = ./programs/eww;
   };
   
   imports = [

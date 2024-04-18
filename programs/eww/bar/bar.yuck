@@ -1,0 +1,28 @@
+(defwindow sys_bar
+  :monitor 0
+  
+  :geometry (geometry :x "0%"
+                      :y "0.05%"
+                      :width "0px"
+                      :height "0px"
+                      :anchor "top center")
+  :stacking "fg"
+  :exclusive true
+  :focusable false
+  (bar))
+
+(defwidget bar []
+  (box :class "bar"
+       :halign "center"
+       :space-evenly true
+       ; left
+       (box :space-evenly false
+            :halign "start"
+            (workspace))
+       ; center
+       (box :space-evenly false
+            :halign "center"
+            (time))
+       ; right
+       (box :space-evenly false
+            :halign "end")))

@@ -1,0 +1,36 @@
+(defvar current_brightness "20")
+
+(defwindow popup_bri
+  :monitor 0
+
+  :geometry (geometry :x "0%"
+                      :y "15%"
+                      :width "0px"
+                      :height "0px"
+                      :anchor "bottom center")
+  :stacking "overlay"
+
+  :reserve (struts  :distance "40px" 
+                    :side "top")
+
+  :wm-ignore false
+
+  (bri :current_bri current_brightness))
+
+(defwidget bri [current_bri] 
+    (box  :class "vol"
+          :spacing "0"
+          :orientation "h"
+          :width "0"
+          :height "0"
+          :space-evenly "false"
+          :active "true"
+          :visible "true"
+
+          (label  :class "vol_label"
+                  :text " ")
+          
+          (scale  :class "vol_scale"
+                  :value current_bri
+                  :min "0"
+                  :max "100")))

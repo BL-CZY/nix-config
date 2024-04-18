@@ -1,0 +1,32 @@
+(defpoll time :interval "10s" "date '+󰥔  %H: %M'")
+(defpoll date :interval "20h" "date '+  %b %d, 20%y'")
+(defvar inner_bar_hover_state "inner_bar_unhover")
+(defvar show_date false)
+(defvar show_time true)
+(defvar show_calendar "false")
+(defwidget time []
+  (eventbox :onclick "sh scripts/calendar.sh"
+            :onhover "eww update inner_bar_hover_state=\"inner_bar_hover\";
+                      eww update show_date=true;
+                      eww update show_time=false;"
+            :onhoverlost "eww update inner_bar_hover_state=\"inner_bar_unhover\";
+                          eww update show_date=false;
+                          eww update show_time=true;"
+            (box :class inner_bar_hover_state
+                 :active true
+                 (time_data))))
+
+(defwidget time_data[]
+  (box
+    :space-evenly false
+    :orientation "h"
+  (revealer :reveal show_time
+            :transition "slideleft"
+            :duration "350ms"
+            (label :class "bar_time" 
+                   :text time))
+  (revealer :reveal show_date
+            :transition "slideright"
+            :duration "350ms"
+            (label :class "bar_time"
+                   :text date))))

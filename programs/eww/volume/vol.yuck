@@ -1,0 +1,36 @@
+(defvar current_volume "20")
+(defvar countdown 0)
+(defvar countdownbri 0)
+
+(defwindow popup_vol
+  :monitor 0
+
+  :geometry (geometry :x "0%"
+                      :y "15%"
+                      :width "0px"
+                      :height "0px"
+                      :anchor "bottom center")
+  :stacking "overlay"
+
+  :reserve (struts  :distance "40px" 
+                    :side "top")
+
+  (vol :current_vol current_volume))
+
+(defwidget vol [current_vol] 
+    (box  :class "vol"
+          :spacing "0"
+          :orientation "h"
+          :width "0"
+          :height "0"
+          :space-evenly "false"
+          :active "true"
+          :visible "true"
+
+          (label  :class "vol_label"
+                  :text " ")
+          
+          (scale  :class "vol_scale"
+                  :value current_vol
+                  :min "0"
+                  :max "100")))
