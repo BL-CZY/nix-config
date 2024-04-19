@@ -106,6 +106,13 @@ in
       interval = {
         swipe = 0.7;
       };
+      swipe = {
+        "3" = {
+          "down" = {
+            command = "thunar";
+          };
+        };
+      };
       pinch = {
         "3" = {
           "out" = {
@@ -113,6 +120,15 @@ in
           };
           "in" = {
             command = "hyprctl dispatch fullscreen 0";
+          };
+        };
+
+        "4" = {
+          "out" = {
+            command = "kitty";
+          };
+          "in" = {
+            command = "hyprctl dispatch killactive";
           };
         };
       };
