@@ -112,6 +112,15 @@ in
             command = "thunar";
           };
         };
+
+        "4" = {
+          "left" = {
+            command = "hyprctl dispatch togglespecialworkspace magic";
+          };
+          "right" = {
+            command = "hyprctl dispatch togglespecialworkspace magic";
+          };
+        };
       };
       pinch = {
         "3" = {
