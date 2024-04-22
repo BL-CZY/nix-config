@@ -66,7 +66,6 @@ in
     })
 
     libinput
-    wpsoffice
     swappy
     gamescope
     
@@ -85,6 +84,7 @@ in
 
     btop  # replacement of htop/nmon
     qimgv
+    dotool
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
@@ -101,24 +101,21 @@ in
     settings = {
       threshold = {
         swipe = 0.1;
-        pinch = 0.1;
+        pinch = 0.5;
       };
       interval = {
         swipe = 0.7;
       };
       swipe = {
-        "3" = {
-          "down" = {
-            command = "thunar";
-          };
-        };
-
         "4" = {
           "left" = {
             command = "hyprctl dispatch togglespecialworkspace magic";
           };
           "right" = {
             command = "hyprctl dispatch togglespecialworkspace magic";
+          };
+          "up" = {
+            command = "echo key f | dotoolc";
           };
         };
       };
