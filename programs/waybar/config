@@ -143,6 +143,6 @@
   "custom/powermenu": {
     "format": "",
     "tooltip": false,
-    "on-click": "wlogout"
+    "on-click": "wlogout -m 300 -c 0"
   }
 }

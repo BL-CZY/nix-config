@@ -4,33 +4,22 @@ let
   usrname = "tpl";
 in
 {
-  # 注意修改这里的用户名与用户目录
   home.username = usrname;
   home.homeDirectory = "/home/${usrname}";
 
-  # 直接将当前文件夹的配置文件，链接到 Home 目录下的指定位置
-  # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
-
-  # 递归将某个文件夹中的文件，链接到 Home 目录下的指定位置
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;   # 递归整个文件夹
-  #   executable = true;  # 将其中所有文件添加「执行」权限
-  # };
-
-  # 直接以 text 的方式，在 nix 配置文件中硬编码文件内容
-  # home.file.".xxx".text = ''
-  #     xxx
-  # '';
-
   home.file = {
-    ".config/waybar" = {
-      source = ./programs/waybar;
+    ".config/rofi/config.rasi" = {
+      source = ./programs/config.rasi;
+      recursive = true;
+    };
+  
+    ".config/hypr/hyprlock.conf" = {
+      source = ./programs/hyprlock.conf;
       recursive = true;
     };
 
-    ".config/wofi" = {
-      source = ./programs/wofi;
+    ".config/waybar" = {
+      source = ./programs/waybar;
       recursive = true;
     };
 
@@ -64,7 +53,9 @@ in
         hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
       };
     })
-
+    (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    qalculate-gtk
+    gnome.file-roller
     libinput
     swappy
     gamescope
@@ -73,7 +64,6 @@ in
     cmatrix
     gedit
     rustup
-    xarchiver
   
     neofetch
 
@@ -85,6 +75,7 @@ in
     btop  # replacement of htop/nmon
     qimgv
     dotool
+    hyprlock
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
 
@@ -102,6 +93,7 @@ in
       threshold = {
         swipe = 0.1;
         pinch = 0.5;
+        hold = 0.0;
       };
       interval = {
         swipe = 0.7;
@@ -115,7 +107,7 @@ in
             command = "hyprctl dispatch togglespecialworkspace magic";
           };
           "up" = {
-            command = "echo key f | dotoolc";
+            command = "echo key f | dotool";
           };
         };
       };
@@ -128,14 +120,11 @@ in
             command = "hyprctl dispatch fullscreen 0";
           };
         };
+      };
 
+      hold = {
         "4" = {
-          "out" = {
-            command = "kitty";
-          };
-          "in" = {
-            command = "hyprctl dispatch killactive";
-          };
+          command = "echo \"3 hold\"";
         };
       };
     };

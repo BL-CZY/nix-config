@@ -16,7 +16,8 @@ let
     ${checkBrightness}/bin/checkBri &
     eww daemon &
     fcitx5 &
-    # ags
+    # ${pkgs.dotool}/bin/dotoold &
+    ${pkgs.fusuma}/bin/fusuma &
   '';
 
   checkVolume = pkgs.pkgs.writeShellScriptBin "checkVol" ''    
@@ -224,15 +225,16 @@ let
         "$mainMod, Q, exec, kitty"
         "$mainMod, F, exec, firefox"        
         "$mainMod, E, exec, thunar"
-        "$mainMod, A, exec, wofi --show drun"
+        "$mainMod, A, exec, rofi -show drun"
         "$mainMod, C, killactive"
         "$mainMod, M, exit"
         "$mainMod, W, togglefloating"
-        "$mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        "$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
         "$mainMod, P, pseudo,"
         "$mainMod, O, togglesplit,"
-        "$mainMod SHIFT, L, exec, wlogout"
+        "$mainMod SHIFT, L, exec, wlogout -m 300 -c 0"
         "$mainMod SHIFT, F, fullscreen"
+        "$mainMod SHIFT, E, exec, rofi -show emoji"
  
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
