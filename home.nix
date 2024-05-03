@@ -54,6 +54,7 @@ in
       };
     })
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    godot_4
     qalculate-gtk
     gnome.file-roller
     libinput
