@@ -3,20 +3,11 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
-    # ${pkgs.swww}/bin/swww init &
     ${pkgs.networkmanagerapplet}/bin/nm-applet &
-  
-    sleep 1
-  
-    # ${pkgs.swww}/bin/swww img ${./wallpaper.jpg} &
-
-    sleep 1
-
     ${checkVolume}/bin/checkVol &
     ${checkBrightness}/bin/checkBri &
     eww daemon &
     fcitx5 &
-    # ${pkgs.dotool}/bin/dotoold &
     ${pkgs.fusuma}/bin/fusuma &
   '';
 
@@ -328,7 +319,7 @@ let
         ''${startupScript}/bin/start''
         "wl-paste --type text --watch cliphist store #Stores only text data"
         "wl-paste --type image --watch cliphist store #Stores only image data"
-        # "ibus-daemon -rxRd"
+        "dotoold"
       ];
     };
   };

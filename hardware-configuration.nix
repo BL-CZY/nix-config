@@ -8,6 +8,13 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
+  # Load nvidia driver for Xorg and Wayland
+  # services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+  };
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -23,6 +30,39 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
+
+  
+  fileSystems = {
+    "/mnt/data" = {
+      device = "/dev/nvme0n1p5";
+      fsType = "ext4";
+      options = [
+        "users"
+        "nofail"
+      ];
+    };
+
+    "/mnt/windows" = {
+      device = "/dev/nvme0n1p3";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "users"
+        "nofail"
+      ];
+    };
+
+    # enable mounting usb
+    "/mnt/dev" = {
+      device = "/dev/sda1";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "users"
+        "nofail"
+      ];
+    };
+  };
 
   swapDevices = [ ];
 

@@ -10,16 +10,13 @@
        url = "github:nix-community/home-manager/master";
        inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    ags.url = "github:Aylur/ags";
   };
 
-  outputs = { nixpkgs, home-manager, nur, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          nur.nixosModules.nur
           ./configuration.nix
 
           home-manager.nixosModules.home-manager
@@ -29,7 +26,7 @@
 
             home-manager.users.tpl = import ./home.nix;
 
-            home-manager.extraSpecialArgs.inputs = inputs;
+            # home-manager.extraSpecialArgs.inputs = inputs;
           }
         ];
       };

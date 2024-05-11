@@ -54,7 +54,6 @@ in
       };
     })
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
-    godot_4
     qalculate-gtk
     gnome.file-roller
     libinput
@@ -75,7 +74,6 @@ in
 
     btop  # replacement of htop/nmon
     qimgv
-    dotool
     hyprlock
     (pkgs.nerdfonts.override { fonts = [ "Hack" ]; })
   ];
@@ -107,9 +105,6 @@ in
           "right" = {
             command = "hyprctl dispatch togglespecialworkspace magic";
           };
-          "up" = {
-            command = "echo key f | dotool";
-          };
         };
       };
       pinch = {
@@ -134,7 +129,7 @@ in
   qt = {
     enable = true;
 
-    platformTheme = "gtk";
+    platformTheme = "gtk3";
 
     style.name = "adwaita-dark";
 
@@ -165,20 +160,6 @@ in
      package = pkgs.colloid-icon-theme;
      name = "Colloid-dark";
     };
-  };
-
-   programs.ags = {
-    enable = true;
-
-    # null or path, leave as null if you don't want hm to manage the config
-    configDir = null;
-
-    # additional packages to add to gjs's runtime
-    extraPackages = with pkgs; [
-      gtksourceview
-      webkitgtk
-      accountsservice
-    ];
   };
    
   # git 相关配置
@@ -350,7 +331,6 @@ in
     ./programs/vsc.nix
     ./programs/dunst.nix
     ./programs/starship/starship.nix
-    inputs.ags.homeManagerModules.default
   ];
     
   # This value determines the Home Manager release that your

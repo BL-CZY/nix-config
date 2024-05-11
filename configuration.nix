@@ -12,14 +12,6 @@
     driSupport32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  # services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-  };
-
   services.xserver.windowManager.i3 = {
     enable = true;
     extraPackages = with pkgs; [
@@ -34,13 +26,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  # nix.nixPath = [
-    # "nixos-config=/home/user/.config/nix-config/configuration.nix"
-    # "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos"
-    # "/nix/var/nix/profiles/per-user/root/channels"
-  # ];
 
-  security.protectKernelImage = false;
+  # security.protectKernelImage = false;
   
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -79,38 +66,6 @@
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  fileSystems = {
-    "/mnt/data" = {
-      device = "/dev/nvme0n1p5";
-      fsType = "ext4";
-      options = [
-        "users"
-        "nofail"
-      ];
-    };
-
-    "/mnt/windows" = {
-      device = "/dev/nvme0n1p3";
-      fsType = "ntfs-3g";
-      options = [
-        "rw"
-        "users"
-        "nofail"
-      ];
-    };
-
-    # enable mounting usb
-    "/mnt/dev" = {
-      device = "/dev/sda1";
-      fsType = "ntfs-3g";
-      options = [
-        "rw"
-        "users"
-        "nofail"
-      ];
-    };
-  };
  
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -120,11 +75,11 @@
     HandlePowerKey=ignore
   '';
 
-  security.pam.services.swaylock = {
-    text = ''
-      auth include login
-    '';
-  };
+  # security.pam.services.swaylock = {
+  #   text = ''
+  #     auth include login
+  #   '';
+  # };
 
   # Enable sound with pipewire.
   sound.enable = true;
