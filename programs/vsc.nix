@@ -137,6 +137,12 @@
       "explorer.confirmDelete" = false;
       "editor.fontFamily" = "'Hack Nerd Font'";
       "catppuccin.accentColor" = "blue";
+
+      "[rust]" = {
+      "editor.defaultFormatter" = "rust-lang.rust-analyzer";
+      "editor.formatOnSave" = true;
+      "editor.formatOnSaveMode" = "file";
+      };
     };
   };
 }
