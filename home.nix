@@ -59,6 +59,7 @@ in
     libinput
     swappy
     gamescope
+    godot_4
     
     google-chrome
     cmatrix

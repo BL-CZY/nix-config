@@ -9,11 +9,13 @@
     ];
 
   # Load nvidia driver for Xorg and Wayland
-  # services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    nvidiaSettings = true;
   };
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
