@@ -54,6 +54,7 @@ in
       };
     })
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    aseprite
     qalculate-gtk
     gnome.file-roller
     libinput
