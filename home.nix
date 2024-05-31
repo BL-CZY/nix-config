@@ -70,7 +70,6 @@ in
     neofetch
 
     tree
-    nnn
 
     nix-output-monitor
 

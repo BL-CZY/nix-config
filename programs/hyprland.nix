@@ -71,7 +71,8 @@ let
     
     #parse the current volume
     current_volume=$(echo "$output" | grep -oE '[+-]?[0-9]+([.][0-9]+)?')
-    
+
+    #eisajdsa    
     echo $current_volume
     
     #if it's 1.00, set it to 100
