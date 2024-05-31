@@ -137,6 +137,7 @@
       "explorer.confirmDelete" = false;
       "editor.fontFamily" = "'Hack Nerd Font'";
       "catppuccin.accentColor" = "blue";
+      "svelte.enable-ts-plugin" = true;
 
       "[rust]" = {
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
