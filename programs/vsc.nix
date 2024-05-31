@@ -138,6 +138,7 @@
       "editor.fontFamily" = "'Hack Nerd Font'";
       "catppuccin.accentColor" = "blue";
       "svelte.enable-ts-plugin" = true;
+      "clangd.path" = "/home/tpl/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd";
 
       "[rust]" = {
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
