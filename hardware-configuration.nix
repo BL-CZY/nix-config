@@ -8,22 +8,13 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
-    nvidiaSettings = true;
-  };
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b3d4a593-dc6c-479f-99b6-fa07f8b2e9a8";
+    { device = "/dev/disk/by-uuid/e6f75d56-bb94-43c2-a6d4-bca05e2d272b";
       fsType = "ext4";
     };
 
@@ -32,39 +23,6 @@
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
-
-  
-  fileSystems = {
-    "/mnt/data" = {
-      device = "/dev/nvme0n1p5";
-      fsType = "ext4";
-      options = [
-        "users"
-        "nofail"
-      ];
-    };
-
-    "/mnt/windows" = {
-      device = "/dev/nvme0n1p3";
-      fsType = "ntfs-3g";
-      options = [
-        "rw"
-        "users"
-        "nofail"
-      ];
-    };
-
-    # enable mounting usb
-    "/mnt/dev" = {
-      device = "/dev/sda1";
-      fsType = "ntfs-3g";
-      options = [
-        "rw"
-        "users"
-        "nofail"
-      ];
-    };
-  };
 
   swapDevices = [ ];
 

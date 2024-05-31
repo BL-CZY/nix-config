@@ -11,6 +11,37 @@
     options = "--delete-older-than 15d";
   };
 
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+    # Modesetting is required.
+    modesetting.enable = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    nvidiaSettings = true;
+  };
+
+  fileSystems = {
+    "/mnt/data" = {
+      device = "/dev/nvme0n1p5";
+      fsType = "ext4";
+      options = [
+        "users"
+        "nofail"
+      ];
+    };
+
+    "/mnt/windows" = {
+      device = "/dev/nvme0n1p3";
+      fsType = "ntfs-3g";
+      options = [
+        "rw"
+        "users"
+        "nofail"
+      ];
+    };
+  };
+  
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
