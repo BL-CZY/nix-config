@@ -225,7 +225,6 @@ let
         "$mainMod, O, togglesplit,"
         "$mainMod SHIFT, L, exec, wlogout -m 300 -c 0"
         "$mainMod SHIFT, F, fullscreen"
-        "$mainMod SHIFT, E, exec, rofi -show emoji"
  
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"

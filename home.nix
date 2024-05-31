@@ -53,7 +53,7 @@ in
         hash = "sha256-U3YAecGltY8vo9Xv/h7TUjlZCyiIQdgSIp705VstvWk=";
       };
     })
-    (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    rofi-wayland
     aseprite
     qalculate-gtk
     gnome.file-roller
@@ -131,7 +131,7 @@ in
   qt = {
     enable = true;
 
-    platformTheme = "gtk3";
+    platformTheme.name = "gtk3";
 
     style.name = "adwaita-dark";
 

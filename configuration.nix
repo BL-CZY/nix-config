@@ -5,6 +5,12 @@
 { config, pkgs, nixpkgs, ... }:
 
 {
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
   # Enable OpenGL
   hardware.opengl = {
     enable = true;

@@ -2,8 +2,6 @@
   description = "Nixos config flake";
 
   inputs = {
-    nur.url = "github:nix-community/NUR";
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
