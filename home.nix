@@ -47,6 +47,7 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
+    floorp
     nnn
     (wechat-uos.override {
       uosLicense = pkgs.fetchurl {
@@ -140,12 +141,7 @@ in
 
   gtk = {
     enable = true;
-
-    # cursorTheme = {
-      # package = pkgs.bibata-cursors;
-      # name = "Bibata-Modern-Ice";
-    # };
-
+    
     theme = {
       # name = "Adwaita-dark";
       # package = pkgs.gnome.gnome-themes-extra;

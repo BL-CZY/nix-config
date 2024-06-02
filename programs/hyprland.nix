@@ -215,7 +215,7 @@ let
  
       bind = [      
         "$mainMod, Q, exec, kitty"
-        "$mainMod, F, exec, firefox"        
+        "$mainMod, F, exec, floorp"        
         "$mainMod, E, exec, thunar"
         "$mainMod, A, exec, rofi -show drun"
         "$mainMod, C, killactive"
