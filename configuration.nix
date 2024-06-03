@@ -143,11 +143,6 @@
     isNormalUser = true;
     description = "tpl";
     extraGroups = [ "networkmanager" "wheel" "input"];
-    packages = with pkgs; [
-      firefox
-      #vscode
-    #  thunderbird
-    ];
   };
 
   # Allow unfree packages
