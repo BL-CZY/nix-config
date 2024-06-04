@@ -1,1 +1,3 @@
 when git doesnt work, use this: gh auth setup-git
+add thunar as the default application: inode/directory=thunar.desktop in ~/.config/mimeapps.list
+when exporting PWAs using floorp, change the .desktop files in ~/.local/share so that it's floorp not /usr/bin/floorp

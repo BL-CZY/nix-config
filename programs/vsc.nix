@@ -138,7 +138,11 @@
       "editor.fontFamily" = "'Hack Nerd Font'";
       "catppuccin.accentColor" = "blue";
       "svelte.enable-ts-plugin" = true;
-      "clangd.path" = "/home/tpl/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd";
+      "clangd.path" = "/etc/profiles/per-user/tpl/bin/clangd";
+      "clangd.arguments" = [
+        "--query-driver=/nix/store/lvpc6hc2k0dn4c0p9r7d1q0fdqkswgiz-x86_64-elf-gcc-wrapper-13.2.0/bin/x86_64-elf-gcc"
+      ];
+      "nasm.outputFormat" = "elf64";
 
       "[rust]" = {
       "editor.defaultFormatter" = "rust-lang.rust-analyzer";
