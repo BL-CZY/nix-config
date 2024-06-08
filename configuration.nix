@@ -19,6 +19,8 @@
     modesetting.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
     nvidiaSettings = true;
+    powerManagement.enable = false;
+    open = false;
   };
 
   fileSystems = {
