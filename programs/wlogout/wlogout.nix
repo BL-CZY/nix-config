@@ -7,7 +7,7 @@
     layout = [
       {
         label = "lock";
-        action = "hyprlock & sleep 1; systemctl suspend";
+        action = "hyprlock & sleep 1";
         text = "  Lock  ";
         keybind = "l";
       }
