@@ -1,0 +1,114 @@
+[
+  {
+    "command": "editor.fold",
+    "key": "alt+shift+[",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "command": "editor.unfold",
+    "key": "alt+shift+]",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "command": "explorer.newFile",
+    "key": "alt+n"
+  },
+  {
+    "command": "explorer.newFolder",
+    "key": "alt+shift+n"
+  },
+  {
+    "command": "workbench.action.previousEditor",
+    "key": "alt+j"
+  },
+  {
+    "command": "-workbench.action.previousEditor",
+    "key": "ctrl+pageup"
+  },
+  {
+    "command": "workbench.action.nextEditor",
+    "key": "alt+k"
+  },
+  {
+    "command": "-workbench.action.nextEditor",
+    "key": "ctrl+pagedown"
+  },
+  {
+    "command": "editor.action.copyLinesDownAction",
+    "key": "shift+alt+pagedown",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "-editor.action.copyLinesDownAction",
+    "key": "ctrl+shift+alt+down",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "editor.action.copyLinesUpAction",
+    "key": "shift+alt+pageup",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "-editor.action.copyLinesUpAction",
+    "key": "ctrl+shift+alt+up",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "workbench.view.explorer",
+    "key": "shift+alt+e",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "command": "-workbench.view.explorer",
+    "key": "ctrl+shift+e",
+    "when": "viewContainer.workbench.view.explorer.enabled"
+  },
+  {
+    "command": "workbench.explorer.fileView.focus",
+    "key": "alt+e"
+  },
+  {
+    "command": "workbench.files.action.focusOpenEditorsView",
+    "key": "ctrl+k e",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "command": "-workbench.files.action.focusOpenEditorsView",
+    "key": "ctrl+k e",
+    "when": "workbench.explorer.openEditorsView.active"
+  },
+  {
+    "command": "workbench.action.focusActiveEditorGroup",
+    "key": "alt+o"
+  },
+  {
+    "command": "editor.action.insertCursorAbove",
+    "key": "shift+alt+k",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "-editor.action.insertCursorAbove",
+    "key": "shift+alt+up",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "editor.action.insertCursorBelow",
+    "key": "shift+alt+j",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "-editor.action.insertCursorBelow",
+    "key": "shift+alt+down",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "workbench.view.scm",
+    "key": "alt+g",
+    "when": "workbench.scm.active"
+  },
+  {
+    "command": "-workbench.view.scm",
+    "key": "ctrl+shift+g",
+    "when": "workbench.scm.active"
+  }
+]

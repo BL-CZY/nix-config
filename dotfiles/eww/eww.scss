@@ -1,0 +1,145 @@
+@use 'colors.scss' as *;
+
+* {
+  all: unset;
+}
+
+.vol {
+  background-color: $Surface_0;
+  padding: 15px;
+  border-radius: 15px;
+  border: 2px solid $Blue;
+}
+
+.vol_label {
+  color: $Text;
+  padding-right: 10px;
+  font-size: 20px;
+}
+
+.vol_scale trough {
+  min-height: 10px;
+  min-width: 200px;
+  border-radius: 10px;
+  background-color: $Base;
+}
+
+.vol_scale trough highlight {
+  background-color: $Sky;
+  border-radius: 10px;
+}
+
+.bar {
+  background-color: $Base;
+  border-radius: 15px;
+  min-width: 1900px;
+  min-height: 30px;
+  border: 2px solid $Surface_0;
+  padding: 2px;
+}
+
+.inner_bar_hover,
+.inner_bar_unhover,
+.workspace_hover,
+.workspace_unhover {
+  border-radius: 15px;
+  background-color: $Base;
+  padding-top: 3px;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.inner_bar_unhover,
+.workspace_unhover {
+  border: 2px solid $Lavender;
+}
+
+.inner_bar_hover,
+.workspace_hover {
+  border: 2px solid $Sky;
+}
+
+.inner_bar_unhover {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.inner_bar_hover {
+  padding-left: 30px;
+  padding-right: 30px;
+  border: 2px solid $Sky;
+}
+
+.workspace_unhover, .workspace_hover {
+  padding: 3px;
+  padding-left: 12px;
+}
+
+.workspace_unhover {
+  margin-left: 0px;
+}
+
+.workspace_hover {
+  margin-left: 10px;
+}
+
+.on {
+  border-radius: 15px;
+  min-width: 50px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background-color: $Sky;
+}
+
+.off {
+  border-radius: 100%;
+  min-width: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: $Sapphire;
+}
+
+.on, .off {
+  padding-left: 5px;
+  padding-right: 5px;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.dropdown_window_hover, .dropdown_window_unhover {
+  border-radius: 15px;
+  background-color: $Base;
+  padding: 10px;
+  transition: all 0.5s ease;
+}
+
+.dropdown_window_unhover {
+  border: 2px solid $Lavender;
+}
+
+.dropdown_window_hover {
+  border: 2px solid $Sky;
+}
+
+.bar_time, .bar_date {
+  font-size: 15px;
+  color: $Text;
+}
+
+.calendar, .calendar_pre {
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+  font-size: 15px;
+  padding: 3px;
+}
+
+.calendar_pre {
+  padding-top: 0px;
+  opacity: 0;
+}
+
+.calendar {
+  padding-top: 10px;
+  opacity: 1;
+}
+
+.calendar:selected {
+  color: $Sky;
+}

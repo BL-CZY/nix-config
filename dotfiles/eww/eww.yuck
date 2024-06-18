@@ -1,0 +1,6 @@
+(include "./volume/vol.yuck")
+(include "./brightness/bri.yuck")
+(include "./bar/bar.yuck")
+(include "./bar/calendar.yuck")
+(include "./bar/time.yuck")
+(include "./bar/workspace.yuck")

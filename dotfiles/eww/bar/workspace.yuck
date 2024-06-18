@@ -1,0 +1,68 @@
+(deflisten current_workspace :initial "1"
+  "sh scripts/get_active_workspace.sh")
+(defvar workspace_hover_state "workspace_unhover")
+(defvar workspace_rev false)
+
+(defwidget workspace []
+  (eventbox :onhover "eww update workspace_hover_state=\"workspace_hover\";
+                      eww update workspace_rev=true"
+            :onhoverlost "eww update workspace_hover_state=\"workspace_unhover\"
+                          eww update workspace_rev=false"
+            (box :class workspace_hover_state
+                 :space-evenly false
+                 :active true
+                 :spacing 10 
+                 (wp1)
+                 (wp2)
+                 (wp3)
+                 (wp4)
+                ;  (wp5)
+                ;  (wp6)
+                ;  (wp7)
+                ;  (wp8)
+                ;  (wp9)
+                ;  (wp0)
+                 (revealer :transition "slideright"
+                           :duration "350ms"
+                           :reveal workspace_rev
+                           (label :text "current workspace: ${current_workspace} ")))))
+
+(defwidget wp1 []
+  (button :class {current_workspace == "1" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 1"))
+
+(defwidget wp2 []
+  (button :class {current_workspace == "2" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 2"))
+
+(defwidget wp3 []
+  (button :class {current_workspace == "3" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 3"))
+
+(defwidget wp4 []
+  (button :class {current_workspace == "4" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 4"))
+
+(defwidget wp5 []
+  (button :class {current_workspace == "5" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 5"))
+
+(defwidget wp6 []
+  (button :class {current_workspace == "6" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 6"))
+
+(defwidget wp7 []
+  (button :class {current_workspace == "7" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 7"))
+
+(defwidget wp8 []
+  (button :class {current_workspace == "8" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 8"))
+
+(defwidget wp9 []
+  (button :class {current_workspace == "9" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 9"))
+
+(defwidget wp0 []
+  (button :class {current_workspace == "10" ? "on" : "off"}
+          :onclick "hyprctl dispatcher workspace 10"))

@@ -1,0 +1,22 @@
+hold:
+  4:
+    command: echo "3 hold"
+interval:
+  swipe: 0.7
+pinch:
+  3:
+    in:
+      command: hyprctl dispatch fullscreen 0
+    out:
+      command: hyprctl dispatch fullscreen 0
+swipe:
+  4:
+    left:
+      command: hyprctl dispatch togglespecialworkspace magic
+    right:
+      command: hyprctl dispatch togglespecialworkspace magic
+threshold:
+  hold: 0.0
+  pinch: 0.5
+  swipe: 0.1
+
