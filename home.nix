@@ -47,7 +47,7 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs;[
-    floorp
+    firefox
     nnn
     (wechat-uos.override {
       uosLicense = pkgs.fetchurl {
